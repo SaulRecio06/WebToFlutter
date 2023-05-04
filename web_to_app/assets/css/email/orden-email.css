@@ -1,0 +1,95 @@
+.order-details-wrapper h2 {
+    background: #f70025;
+    color: #ffffff;
+    display: block;
+    font-size: 0.875em;
+    font-weight: 700;
+    height: 45px;
+    line-height: 45px;
+    padding: 0 12px 0 28px;
+    text-transform: uppercase;
+    width: 97%;
+    margin: 0;
+}
+
+.aquipidologo {
+    height: inherit;
+    position: absolute;
+    right: 0;
+    margin-right: 16px;
+}
+
+.order-details .food__btn {
+    border: 0 none;
+}
+
+.order-details {
+    background-color: #f1f2f3;
+    padding: 10px 0;
+    text-align: left;
+    float: left;
+    width: 100%;
+}
+
+.order-details ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+.order-details ul li {
+    border-bottom: 1px solid #e9e9e9;
+    display: block;
+    float: left;
+    padding: 16px 0px;
+    text-align: left;
+    width: 100%;
+}
+
+.order-details ul li:last-child {
+    border-bottom: 0 solid transparent;
+}
+
+.order-details ul li p {
+    color: #606060;
+    display: block;
+    margin: 0;
+    width: 60%;
+    float: left;
+}
+
+.order-details ul li p:last-child {
+    width: 40%;
+}
+
+.order-details ul li p.strong {
+    color: #303030;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.order-details ul li p input {
+    display: block;
+    float: left;
+    margin-right: 10px;
+    margin-top: 3px;
+}
+
+.order-details ul li p label {
+    color: #606060;
+    display: block;
+    float: left;
+    font-weight: 300;
+    margin: 0;
+    overflow: hidden;
+    line-height: 20px;
+}
+
+.centerAlign-all {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.fullWidth {
+    width: 100%;
+}
