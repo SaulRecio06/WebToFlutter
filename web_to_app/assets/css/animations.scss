@@ -1,0 +1,15 @@
+@keyframes prrtzoomin {
+    0% {
+        background-size: 100% 100%;
+    }
+    50% {
+        background-size: 105% 105%;
+    }
+    100% {
+        background-size: 100% 100%;
+    }
+}
+div.slide__pizza img {
+    -webkit-animation: rotate 60s linear 0s infinite normal;
+    animation: rotate 60s linear 0s infinite normal;
+}
