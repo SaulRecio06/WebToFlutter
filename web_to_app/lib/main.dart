@@ -63,12 +63,58 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         ),
-        const Center(
-          child: Text("Pida Aqui",
-              style: TextStyle(
-                  fontSize: 48,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold)),
+        Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 200,
+              ),
+              const Text("\"AQUÍ PIDE\"",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontFamily: 'Pacifico',
+                      fontSize: 48,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold)),
+              const SizedBox(
+                height: 15,
+              ),
+              const Text("Servicios de comida a domicilio & ordena y recoja",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: 'Pacifico',
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  )),
+              const SizedBox(
+                height: 100,
+              ),
+              TextField(
+                style: const TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: const Color(0xFFF44336),
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(8)),
+                  hintText: "Busca Restaurantes (Pizza, Hamburguesas)",
+                  hintStyle: const TextStyle(color: Colors.white),
+                  prefixIcon: const Icon(Icons.search),
+                  prefixIconColor: Colors.white,
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFF44336)),
+                  child: const Text("Ir al menú"))
+            ],
+          ),
         )
       ],
     ));
