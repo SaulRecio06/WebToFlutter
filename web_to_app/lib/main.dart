@@ -13,35 +13,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Aqui Pida',
+      title: 'AQUI PIDE',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
       ),
-      home: const MyHomePage(title: 'Aqui Pida'),
+      home: const MyHomePage(title: 'AQUI PIDE'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -52,18 +34,21 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
-        body: new Stack(
-      children: <Widget>[
-        new Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/img/bg/mobilbg2.jpg'),
-              fit: BoxFit.cover,
-            ),
+        body: SingleChildScrollView(
+            child: Column(children: [
+      Container(
+        height: height,
+        width: width,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/img/bg/mobilbg2.jpg'),
+            fit: BoxFit.cover,
           ),
         ),
-        Center(
+        child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -91,36 +76,54 @@ class _MyHomePageState extends State<MyHomePage> {
               const SizedBox(
                 height: 100,
               ),
-              TextField(
-                style: const TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: const Color(0xFFF44336),
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(8)),
-                  hintText: "Busca Restaurantes (Pizza, Hamburguesas)",
-                  hintStyle: const TextStyle(color: Colors.white),
-                  prefixIcon: const Icon(Icons.search),
-                  prefixIconColor: Colors.white,
+              SizedBox(
+                  width: 350,
+                  child: TextField(
+                    style: const TextStyle(color: Colors.white),
+                    decoration: InputDecoration(
+                      border: UnderlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0)),
+                      contentPadding:
+                          const EdgeInsets.symmetric(vertical: 20.0),
+                      filled: true,
+                      fillColor: const Color(0xFFF44336),
+                      hintText:
+                          "Busca restaurantes (pizza, hamburguesa, sushi, italiano, etc)...",
+                      hintStyle: const TextStyle(color: Colors.white),
+                      prefixIcon: const Icon(Icons.search, color: Colors.white),
+                      prefixIconColor: Colors.white,
+                    ),
+                  )),
+              const SizedBox(
+                height: 15,
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFF44336)),
+                child: const Text(
+                  "Ir al menú",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
               ),
               const SizedBox(
                 height: 15,
               ),
-              ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFF44336)),
-                  child: const Text("Ir al menú"))
+              const SizedBox(
+                  child: ExpansionTile(
+                      backgroundColor: Colors.white,
+                      collapsedBackgroundColor: Colors.white,
+                      title: Text("Nuestros tipos de tiendas"),
+                      children: <Widget>[
+                    CircleAvatar(
+                      backgroundImage: AssetImage("assets/img/bg/mobilbg.jpg"),
+                    ),
+                    Text("Restaurante")
+                  ])),
             ],
           ),
-        )
-      ],
-    ));
-    // Here we take the value from the MyHomePage object that was created by
-    // the App.build method, and use it to set our appbar title.
-    // Center is a layout widget. It takes a single child and positions it
-    // in the middle of the parent.
+        ),
+      )
+    ])));
   }
 }
