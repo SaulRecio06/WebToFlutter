@@ -109,17 +109,46 @@ class _MyHomePageState extends State<MyHomePage> {
               const SizedBox(
                 height: 15,
               ),
-              const SizedBox(
-                  child: ExpansionTile(
-                      backgroundColor: Colors.white,
-                      collapsedBackgroundColor: Colors.white,
-                      title: Text("Nuestros tipos de tiendas"),
-                      children: <Widget>[
-                    CircleAvatar(
-                      backgroundImage: AssetImage("assets/img/bg/mobilbg.jpg"),
-                    ),
-                    Text("Restaurante")
-                  ])),
+              SizedBox(
+                width: 350,
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(5.0),
+                    child: ExpansionTile(
+                        backgroundColor: Colors.white,
+                        collapsedBackgroundColor: Colors.white,
+                        title: const Text("Nuestros tipos de tiendas"),
+                        children: <Widget>[
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Row(children: const [
+                                CircleAvatar(
+                                  backgroundImage:
+                                      AssetImage("assets/img/bg/mobilbg.jpg"),
+                                ),
+                                Text(
+                                  " Restaurante",
+                                  style: TextStyle(),
+                                )
+                              ]),
+                            ],
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: const [
+                              Card(),
+                              CircleAvatar(
+                                backgroundImage:
+                                    AssetImage("assets/img/bg/mobilbg.jpg"),
+                              ),
+                              Text(
+                                " Restaurante",
+                                style: TextStyle(),
+                              )
+                            ],
+                          ),
+                        ])),
+              )
             ],
           ),
         ),
