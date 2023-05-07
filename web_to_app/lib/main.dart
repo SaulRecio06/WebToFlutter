@@ -118,34 +118,82 @@ class _MyHomePageState extends State<MyHomePage> {
                         collapsedBackgroundColor: Colors.white,
                         title: const Text("Nuestros tipos de tiendas"),
                         children: <Widget>[
+                          const Padding(padding: EdgeInsets.all(5)),
                           Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Row(children: const [
-                                CircleAvatar(
-                                  backgroundImage:
-                                      AssetImage("assets/img/bg/mobilbg.jpg"),
-                                ),
-                                Text(
-                                  " Restaurante",
-                                  style: TextStyle(),
-                                )
-                              ]),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {},
+                                    style: ElevatedButton.styleFrom(
+                                        padding: const EdgeInsets.all(5),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30)),
+                                        backgroundColor: Colors.grey),
+                                    child: Row(
+                                      children: const [
+                                        CircleAvatar(
+                                          backgroundImage: AssetImage(
+                                              "assets/img/bg/mobilbg.jpg"),
+                                        ),
+                                        Text(" Restaurante")
+                                      ],
+                                    ),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () {},
+                                    style: ElevatedButton.styleFrom(
+                                        padding: const EdgeInsets.all(5),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30)),
+                                        backgroundColor: Colors.grey),
+                                    child: Row(
+                                      children: const [
+                                        CircleAvatar(
+                                          backgroundImage: AssetImage(
+                                              "assets/img/bg/mobilbg.jpg"),
+                                        ),
+                                        Text(" Limpieza")
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {},
+                                    style: ElevatedButton.styleFrom(
+                                        padding: const EdgeInsets.all(5),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30)),
+                                        backgroundColor: Colors.grey),
+                                    child: Row(
+                                      children: const [
+                                        CircleAvatar(
+                                          backgroundImage: AssetImage(
+                                              "assets/img/bg/mobilbg.jpg"),
+                                        ),
+                                        Text(" Bebidas")
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: const [
-                              Card(),
-                              CircleAvatar(
-                                backgroundImage:
-                                    AssetImage("assets/img/bg/mobilbg.jpg"),
-                              ),
-                              Text(
-                                " Restaurante",
-                                style: TextStyle(),
-                              )
-                            ],
+                          const SizedBox(
+                            height: 10,
                           ),
                         ])),
               )
