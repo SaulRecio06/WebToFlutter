@@ -112,8 +112,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   const SizedBox(
-                      // height: 15,
-                      ),
+                    height: 15,
+                  ),
                   SizedBox(
                     width: 350,
                     child: ClipRRect(
