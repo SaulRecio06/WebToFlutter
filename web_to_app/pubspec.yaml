@@ -59,8 +59,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/img/bg/mobilbg2.jpg
-    - assets/img/bg/mobilbg.jpg
+    - assets/img/bg/
+    - assets/css/ahaar/images/icon/color-icon/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

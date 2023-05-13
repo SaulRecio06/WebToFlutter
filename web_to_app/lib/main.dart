@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_new
 
 import 'package:flutter/material.dart';
+import 'package:web_to_app/components/service_card.dart';
 
 void main() {
   runApp(const MyApp());
@@ -220,7 +221,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Container(
                   height: height,
-                  width: width - 50,
+                  width: width - 30,
                   decoration: const BoxDecoration(
                       color: Color.fromARGB(255, 255, 255, 255)),
                   child: Column(
@@ -228,8 +229,48 @@ class _MyHomePageState extends State<MyHomePage> {
                       SizedBox(
                         height: 150,
                       ),
-                      Text("El Proceso de nuestro servicio"),
-                      Text("¿Comó Funciona?")
+                      ServiceCard(
+                        img: "assets/css/ahaar/images/icon/color-icon/1.png",
+                        title: "Elige tu tienda",
+                        titleStyle: TextStyle(
+                          color: Color.fromARGB(68, 68, 68, 1),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                        ),
+                        descripcion: "Busca & elige tu preferida",
+                        descripocionStyle: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16,
+                        ),
+                      ),
+                      ServiceCard(
+                        img: "assets/css/ahaar/images/icon/color-icon/2.png",
+                        title: "Elige tu tienda",
+                        titleStyle: TextStyle(
+                          color: Color.fromARGB(68, 68, 68, 1),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                        ),
+                        descripcion: "Busca & elige tu preferida",
+                        descripocionStyle: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16,
+                        ),
+                      ),
+                      ServiceCard(
+                        img: "assets/css/ahaar/images/icon/color-icon/3.png",
+                        title: "Elige tu tienda",
+                        titleStyle: TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                        ),
+                        descripcion: "Busca & elige tu preferida",
+                        descripocionStyle: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16,
+                        ),
+                      ),
                     ],
                   ),
                 ),
