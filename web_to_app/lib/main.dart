@@ -1,11 +1,12 @@
-// ignore_for_file: unnecessary_new
-
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:web_to_app/components/autocomplete_tienda.dart';
 import 'package:web_to_app/components/card_button.dart';
+import 'package:web_to_app/components/product_card.dart';
+import 'package:web_to_app/components/product_list.dart';
 import 'package:web_to_app/components/service_card.dart';
+import 'package:web_to_app/entities/product.dart';
+import 'package:web_to_app/utils/fetch_productos.dart';
 
 import 'components/custom_button.dart';
 import 'components/tipo_tienda_chip.dart';
@@ -88,25 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     const SizedBox(
                       height: 100,
                     ),
-                    SizedBox(
-                        width: 350,
-                        child: TextField(
-                          style: const TextStyle(color: Colors.white),
-                          decoration: InputDecoration(
-                            border: UnderlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
-                            contentPadding:
-                                const EdgeInsets.symmetric(vertical: 20.0),
-                            filled: true,
-                            fillColor: const Color(0xFFF44336),
-                            hintText:
-                                "Busca restaurantes (pizza, hamburguesa, sushi, italiano, etc)...",
-                            hintStyle: const TextStyle(color: Colors.white),
-                            prefixIcon:
-                                const Icon(Icons.search, color: Colors.white),
-                            prefixIconColor: Colors.white,
-                          ),
-                        )),
+                    const SizedBox(width: 350, child: Autocompletetienda()),
                     const SizedBox(
                       height: 15,
                     ),
@@ -571,6 +554,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
+            ProducList(idTienda: 36)
           ],
         ),
       ),
