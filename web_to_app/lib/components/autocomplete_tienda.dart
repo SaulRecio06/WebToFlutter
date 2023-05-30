@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:web_to_app/utils/fetch_tipo_tiendas.dart';
 
 import '../entities/tiendas.dart';
+import '../main.dart';
 
 class Autocompletetienda extends StatefulWidget {
   const Autocompletetienda({super.key});
@@ -12,7 +13,6 @@ class Autocompletetienda extends StatefulWidget {
 
 class _AutocompletetiendaState extends State<Autocompletetienda> {
   List<Tienda> tiendas = [];
-
   @override
   void initState() {
     super.initState();
@@ -44,7 +44,8 @@ class _AutocompletetiendaState extends State<Autocompletetienda> {
         }).toList();
       },
       onSelected: (Tienda selectedTienda) {
-        print(selectedTienda.nombreComercial);
+        value = selectedTienda.urlPerzonalizada;
+        print(selectedTienda.urlPerzonalizada);
       },
       displayStringForOption: (Tienda option) {
         return option.nombreComercial;

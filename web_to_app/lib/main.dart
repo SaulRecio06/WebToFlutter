@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:web_to_app/components/autocomplete_tienda.dart';
 import 'package:web_to_app/components/card_button.dart';
-import 'package:web_to_app/components/product_card.dart';
 import 'package:web_to_app/components/product_list.dart';
 import 'package:web_to_app/components/service_card.dart';
-import 'package:web_to_app/entities/product.dart';
-import 'package:web_to_app/utils/fetch_productos.dart';
+import 'package:web_to_app/pages/negocios.dart';
 
 import 'components/custom_button.dart';
 import 'components/tipo_tienda_chip.dart';
+
+var value;
 
 void main() {
   runApp(const MyApp());
@@ -45,7 +45,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -94,7 +93,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       height: 15,
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => BusinessPage(
+                                  value: value,
+                                )));
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFFF44336)),
                       child: const Text(
@@ -178,8 +182,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     width: width - 30,
                     decoration: const BoxDecoration(
                         color: Color.fromARGB(255, 255, 255, 255)),
-                    child: Column(
-                      children: const [
+                    child: const Column(
+                      children: [
                         SizedBox(
                           height: 100,
                         ),
@@ -307,9 +311,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Row(
+                  const Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Icon(
                         Icons.emoji_emotions,
                         color: Colors.white,
@@ -327,9 +331,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ],
                   ),
-                  Row(
+                  const Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Icon(
                         Icons.timer,
                         color: Colors.white,
@@ -347,9 +351,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ],
                   ),
-                  Row(
+                  const Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Icon(
                         Icons.attach_money,
                         color: Colors.white,
@@ -440,9 +444,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   TextButton(
                     onPressed: () {},
-                    child: Row(
+                    child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         Icon(
                           FontAwesomeIcons.whatsapp,
                           color: Colors.white,
@@ -459,9 +463,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   TextButton(
                     onPressed: () {},
-                    child: Row(
+                    child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         Icon(
                           // ignore: deprecated_member_use
                           FontAwesomeIcons.facebookSquare,
@@ -479,9 +483,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   TextButton(
                     onPressed: () {},
-                    child: Row(
+                    child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         Icon(
                           // ignore: deprecated_member_use
                           FontAwesomeIcons.facebookSquare,
@@ -499,9 +503,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   TextButton(
                     onPressed: () {},
-                    child: Row(
+                    child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         Icon(
                           // ignore: deprecated_member_use
                           FontAwesomeIcons.instagram,
@@ -519,9 +523,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   TextButton(
                     onPressed: () {},
-                    child: Row(
+                    child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         Icon(
                           // ignore: deprecated_member_use
                           Icons.email,
@@ -554,7 +558,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            ProducList(idTienda: 36)
+            const ProducList(idTienda: 36)
           ],
         ),
       ),
