@@ -44,8 +44,7 @@ class _AutocompletetiendaState extends State<Autocompletetienda> {
         }).toList();
       },
       onSelected: (Tienda selectedTienda) {
-        value = selectedTienda.urlPerzonalizada;
-        print(selectedTienda.urlPerzonalizada);
+        value = selectedTienda.idTienda;
       },
       displayStringForOption: (Tienda option) {
         return option.nombreComercial;

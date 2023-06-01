@@ -1,95 +1,181 @@
 import 'package:flutter/material.dart';
+import 'package:web_to_app/components/producto_card.dart';
+import '../main.dart';
+import '../utils/classProducto.dart';
+
+var arrayTiendaProductos;
+var _response;
+bool _isLoading = true;
 
 class BusinessPage extends StatefulWidget {
-  final String value;
-
-  BusinessPage({Key? key, required this.value}) : super(key: key);
+  const BusinessPage({Key? key, required value}) : super(key: key);
 
   @override
   State<BusinessPage> createState() => _BusinessPage();
 }
 
 class _BusinessPage extends State<BusinessPage> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  @override
+  void initState() {
+    super.initState();
+    getPrueba();
+  }
 
+  Future<void> getPrueba() async {
+    _response = await fetchDatos(value);
+
+    setState(() {
+      _isLoading = false;
+    });
+    for (var element in _response) {
+      print(element["orden"]);
+    }
+  }
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
-        key: _scaffoldKey,
-        endDrawer: Drawer(
-            child: ListView(
-          padding: const EdgeInsets.all(0.0),
-          children: const <Widget>[
-            DrawerHeader(
-                child: Row(children: [
-              Icon(
-                Icons.info,
-                size: 14,
-              ),
-              Text(
-                "¿Tienes un negocio? Vende con nosotros",
-              )
-            ]))
-          ],
-        )),
-        body: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                const Image(
-                    image: AssetImage(
-                      "assets/img/logo-aqui-pido.png",
-                    ),
-                    height: 100),
-                const Column(
-                  children: [
-                    Icon(
-                      Icons.favorite,
-                      color: Colors.black,
-                    ),
-                    Text(
-                      "Favoritos",
-                      style: TextStyle(color: Colors.black),
-                    )
-                  ],
-                ),
-                const Text(
-                  "|",
-                  style: TextStyle(fontSize: 24),
-                ),
-                const Column(
-                  children: [
-                    Row(
+        body: SingleChildScrollView(
+            child: Column(children: <Widget>[
+      Container(
+        width: width,
+        height: height,
+        child: _isLoading
+            ? const Center(child: CircularProgressIndicator())
+            : ListView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemCount: _response.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final item = _response[index];
+                  if (item is List<dynamic>) {
+                    return Column(
                       children: [
-                        Icon(
-                          Icons.shopping_bag,
-                          color: Colors.black,
+                        ListTile(
+                          title: Text([item].toString()),
                         ),
-                        Text("0")
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: const ClampingScrollPhysics(),
+                          itemCount: item.length,
+                          itemBuilder: (context, subIndex) {
+                            return ListTile(
+                              title: Text(item[subIndex]),
+                            );
+                          },
+                        ),
                       ],
-                    ),
-                    Text(
-                      "Mi Pedido",
-                      style: TextStyle(color: Colors.black),
-                    )
-                  ],
-                ),
-                IconButton(
-                  icon: const Icon(Icons.menu),
-                  onPressed: () => _scaffoldKey.currentState?.openEndDrawer(),
-                )
-              ],
-            ),
-            Column(
-              children: [Text(widget.value)],
-            )
-          ],
-        )
-
-        // Center(
-        //   child: Text(widget.value),
-        // ),
-        );
+                    );
+                  } else {
+                    return Column(
+                      children: [
+                        Text(
+                          item["descripcion"].toString(),
+                          style: const TextStyle(
+                              fontSize: 24,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        ListView.builder(
+                            shrinkWrap: true,
+                            physics: const ClampingScrollPhysics(),
+                            itemCount: item["productos"].length,
+                            itemBuilder: (context, subIndex2) {
+                              return Padding(
+                                  padding: const EdgeInsets.all(20.0),
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors
+                                            .white, // Color de fondo del container
+                                        borderRadius: BorderRadius.circular(
+                                            10), // Borde redondeado con radio de 10
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(
+                                                0.5), // Color de sombra
+                                            spreadRadius:
+                                                2, // Radio de expansión de la sombra
+                                            blurRadius:
+                                                5, // Radio de desenfoque de la sombra
+                                            offset: const Offset(0,
+                                                3), // Desplazamiento de la sombra (eje X, eje Y)
+                                          ),
+                                        ],
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(20.0),
+                                        child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              SizedBox(
+                                                height: 150,
+                                                width: 150,
+                                                child: Image.network(
+                                                    // ignore: prefer_interpolation_to_compose_strings
+                                                    "https://aquipide.com/api/img/" +
+                                                        item["productos"]
+                                                                [subIndex2]
+                                                            ["imagen"]),
+                                              ),
+                                              RichText(
+                                                textAlign: TextAlign.center,
+                                                text: TextSpan(
+                                                  text: item["productos"]
+                                                      [subIndex2]["nombre"],
+                                                  style: const TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                              RichText(
+                                                  textAlign: TextAlign.center,
+                                                  text: TextSpan(
+                                                    text:
+                                                        "${item["productos"][subIndex2]["tamanos"][0]["precio"]}.00",
+                                                    style: const TextStyle(
+                                                        fontSize: 16,
+                                                        color: Colors.red,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  )),
+                                              RichText(
+                                                  textAlign: TextAlign.center,
+                                                  text: TextSpan(
+                                                    text: item["productos"]
+                                                            [subIndex2]
+                                                        ["descripcion"],
+                                                    style: const TextStyle(
+                                                        fontSize: 16,
+                                                        color: Colors.grey),
+                                                  )),
+                                              ElevatedButton(
+                                                  onPressed: () {},
+                                                  child: Text("SELECCIONAR"))
+                                            ]),
+                                      )));
+                            })
+                        // Text(item["productos"].toString())
+                        // ListView.builder(
+                        //   scrollDirection: Axis.vertical,
+                        //   shrinkWrap: true,
+                        //   itemCount: item["productos"].length,
+                        //   itemBuilder: (context, int index) {
+                        //     const Text("");
+                        //   },
+                        // )
+                      ],
+                    );
+                  }
+                }),
+      )
+    ])));
   }
 }

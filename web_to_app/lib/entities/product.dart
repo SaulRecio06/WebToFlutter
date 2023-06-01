@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 class Producto {
   final int idTienda;
   final int idCategoria;

@@ -39,7 +39,6 @@ Future<List<Tienda>> fetchTiendas() async {
 
         tiendas.add(tienda);
       }
-
       return tiendas;
     } else {
       throw Exception('Error en la operación: ${jsonData['mensaje']}');

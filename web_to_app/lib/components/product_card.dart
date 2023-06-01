@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:web_to_app/utils/fetch_productos.dart';
 
 import '../entities/product.dart';
 
@@ -12,15 +11,13 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Image.network(producto.imagen),
-          Text(producto.nombre),
-          Text(producto.tamanos[0].precio),
-          Text(producto.descripcion),
-        ],
-      ),
+    return Column(
+      children: [
+        Image.network(producto.imagen),
+        Text(producto.nombre),
+        Text(producto.tamanos[0].precio),
+        Text(producto.descripcion),
+      ],
     );
   }
 }
