@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:web_to_app/components/autocomplete_tienda.dart';
 import 'package:web_to_app/components/card_button.dart';
-import 'package:web_to_app/components/product_list.dart';
 import 'package:web_to_app/components/service_card.dart';
 import 'package:web_to_app/pages/negocios.dart';
 
@@ -308,7 +307,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     "¿Por qué tener su tienda en Aquí Pide?",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 20,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -325,7 +324,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Text(
                         "Creemos que sus clientes tienen que \namar buscar y pedir por su tienda.",
                         style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 18,
                             color: Colors.white,
                             fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,
@@ -345,7 +344,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Text(
                         "Creemos que tiene que tener su tienda\n de forma sencilla de la noche \na la mañana.",
                         style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 18,
                             color: Colors.white,
                             fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,
@@ -365,7 +364,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Text(
                         "Creemos que no tiene que pagar altas\n comisiones de entre el 20% y 30% para\n vender por una app.",
                         style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 18,
                             color: Colors.white,
                             fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,
@@ -559,7 +558,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            const ProducList(idTienda: 36)
           ],
         ),
       ),

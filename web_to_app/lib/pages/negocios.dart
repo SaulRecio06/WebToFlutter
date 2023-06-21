@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:web_to_app/pages/cart.dart';
 import '../main.dart';
 import '../utils/classProducto.dart';
 
 var arrayTiendaProductos;
 var _response;
 bool _isLoading = true;
+double width = 0;
+double height = 0;
 
 class BusinessPage extends StatefulWidget {
   const BusinessPage({Key? key, required value}) : super(key: key);
@@ -26,17 +29,14 @@ class _BusinessPage extends State<BusinessPage> {
     setState(() {
       _isLoading = false;
     });
-    for (var element in _response) {
-      print(element["orden"]);
-    }
   }
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
+    width = MediaQuery.of(context).size.width;
+    height = MediaQuery.of(context).size.height;
     return Scaffold(
         key: _scaffoldKey,
         endDrawer: const Drawer(
@@ -50,7 +50,7 @@ class _BusinessPage extends State<BusinessPage> {
                   ),
                   Text(
                     "¿Tienes un negocio? Vende co...",
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 16),
                   )
                 ],
               ),
@@ -65,7 +65,7 @@ class _BusinessPage extends State<BusinessPage> {
                 children: [
                   Image.asset(
                     "assets/img/logo-aqui-pido.png",
-                    height: 100,
+                    height: 80,
                   ),
                   const Column(
                     children: [
@@ -80,18 +80,21 @@ class _BusinessPage extends State<BusinessPage> {
                       style: TextStyle(
                         fontSize: 36,
                       )),
-                  const Column(
+                  Column(
                     children: [
                       Row(
                         children: [
-                          Icon(
-                            Icons.shopping_bag,
-                            color: Colors.black,
-                          ),
-                          Text("0")
+                          IconButton(
+                              icon: const Icon(Icons.shopping_bag,
+                                  color: Colors.black),
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => const CartPage()));
+                              }),
+                          const Text("0")
                         ],
                       ),
-                      Text("Mi pedido")
+                      const Text("Mi pedido")
                     ],
                   ),
                   IconButton(
@@ -101,20 +104,16 @@ class _BusinessPage extends State<BusinessPage> {
                         Icons.menu,
                         size: 24,
                         color: Colors.black,
-                      ))
-                  // const Icon(
-                  //   Icons.menu,
-                  //   color: Colors.black,
-                  // )
+                      )),
                 ],
               ),
               style: const TextStyle(color: Colors.black),
             )),
         body: SingleChildScrollView(
             child: Column(children: <Widget>[
-          Container(
+          SizedBox(
             width: width,
-            height: height,
+            height: height - 100,
             child: _isLoading
                 ? const Center(child: CircularProgressIndicator())
                 : ListView.builder(
@@ -233,26 +232,99 @@ class _BusinessPage extends State<BusinessPage> {
                                                             color: Colors.grey),
                                                       )),
                                                   ElevatedButton(
-                                                      onPressed: () {},
-                                                      child: const Text(
-                                                          "SELECCIONAR"))
+                                                      onPressed: () {
+                                                        openExtras(
+                                                            item["productos"]
+                                                                [subIndex2]);
+                                                      },
+                                                      child: const Center(
+                                                          child: Text(
+                                                              "SELECCIONAR")))
                                                 ]),
                                           )));
                                 })
-                            // Text(item["productos"].toString())
-                            // ListView.builder(
-                            //   scrollDirection: Axis.vertical,
-                            //   shrinkWrap: true,
-                            //   itemCount: item["productos"].length,
-                            //   itemBuilder: (context, int index) {
-                            //     const Text("");
-                            //   },
-                            // )
                           ],
                         );
                       }
                     }),
           )
         ])));
+  }
+
+  Future openExtras(var datos) => showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+          backgroundColor: const Color.fromARGB(255, 204, 194, 179),
+          title:
+              const Text("Personaliza tu pedido", textAlign: TextAlign.center),
+          actions: [
+            ElevatedButton(
+                onPressed: agregarExtras,
+                child: const Center(
+                    child: Text(
+                  "Agregar",
+                ))),
+          ],
+          content: SingleChildScrollView(
+              child: Column(children: <Widget>[
+            RichText(
+              text: TextSpan(
+                  text: "${datos["nombre"]}",
+                  style: const TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold)),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            RichText(
+              text: const TextSpan(
+                  text: "Elige tu presentacion preferida",
+                  style: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold)),
+              textAlign: TextAlign.left,
+            ),
+            SizedBox(
+                width: width,
+                height: 100,
+                child: _isLoading
+                    ? const Center(child: CircularProgressIndicator())
+                    : ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: datos["tamanos"].length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Column(children: [
+                            RichText(
+                                textAlign: TextAlign.left,
+                                text: TextSpan(
+                                    text:
+                                        "${datos["tamanos"][index]["nombre"]}"))
+                          ]);
+                        },
+                      )),
+            SizedBox(
+                width: width,
+                height: height - 400,
+                child: _isLoading
+                    ? const Center(child: CircularProgressIndicator())
+                    : ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: datos["extras"].length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Column(children: [
+                            RichText(
+                                textAlign: TextAlign.left,
+                                text: TextSpan(
+                                    text:
+                                        "${datos["extras"][index]["nombre"]}\n+ MX${datos["extras"][index]["precio"]}"))
+                          ]);
+                        },
+                      )),
+            const Text("Algo")
+          ]))));
+
+  void agregarExtras() {
+    print("Se agrego algo");
+    Navigator.of(context).pop();
   }
 }
